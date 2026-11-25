@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ali Eren Kocaman — AI, Mobile & Cybersecurity Engineer</title>
+  <meta name="description" content="Portfolio of Ali Eren Kocaman — Computer Engineering student focused on Computer Vision, On-Prem RAG, Kotlin/KMP Mobile Apps, and Cybersecurity." />
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card: #121826;
+      --card-hover: #172033;
+      --border: #1f293d;
+      --text: #e6edf7;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #34d399;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 45%),
+                  radial-gradient(circle at bottom left, rgba(52, 211, 153, 0.06), transparent 40%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 15, 23, 0.8);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 16px;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+    .brand span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    .nav-links a:hover { color: var(--text); }
+    .lang-btn {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Hero */
+    .hero { padding: 84px 0 56px; }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: var(--accent-2);
+      font-size: 0.84rem;
+      font-weight: 500;
+      margin-bottom: 22px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 10px var(--accent-2);
+    }
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+    h1 .gradient {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 30px;
+    }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.94rem;
+      transition: 0.2s ease;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+    .btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #0284c7);
+      border: none;
+      color: #04101a;
+    }
+    .btn-primary:hover { filter: brightness(1.08); }
+
+    /* Sections */
+    section { padding: 48px 0; }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    h2 {
+      font-size: 1.65rem;
+      letter-spacing: -0.02em;
+    }
+    .section-sub { color: var(--muted); font-size: 0.95rem; }
+
+    /* Projects Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.22s ease;
+    }
+    .card:hover {
+      background: var(--card-hover);
+      border-color: rgba(56, 189, 248, 0.45);
+      transform: translateY(-3px);
+    }
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .tag-cat {
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+    }
+    .tag-status {
+      font-size: 0.74rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.12);
+      color: var(--muted);
+    }
+    .card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 0.94rem; margin-bottom: 18px; }
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .tech {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.76rem;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      color: #bae6fd;
+    }
+    .card-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-link:hover { text-decoration: underline; }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+    .skill-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .skill-box h3 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+    .skill-box ul {
+      list-style: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .skill-box li { padding: 4px 0; }
+
+    /* Contact */
+    .contact-box {
+      background: linear-gradient(135deg, rgba(18, 24, 38, 0.95), rgba(15, 23, 42, 0.9));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+    }
+    .contact-box h2 { margin-bottom: 10px; }
+    .contact-box p {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+    .contact-box .btn-row { justify-content: center; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      margin-top: 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links a { display: none; }
+      .hero { padding: 54px 0 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">alierenkocaman<span>.tr</span></a>
+      <nav class="nav-links">
+        <a href="#projects" data-i18n="nav_projects">Projeler</a>
+        <a href="#skills" data-i18n="nav_skills">Yetkinlikler</a>
+        <a href="#contact" data-i18n="nav_contact">İletişim</a>
+        <button class="lang-btn" id="langToggle" aria-label="Change Language">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="status-badge">
+        <span class="dot"></span>
+        <span data-i18n="hero_badge">Uzaktan / Yarı Zamanlı ve Proje Bazlı İşlere Açık</span>
+      </div>
+      <h1>
+        Ali Eren Kocaman<br />
+        <span class="gradient" data-i18n="hero_role">Yapay Zekâ, Mobil & Siber Güvenlik Mühendisliği</span>
+      </h1>
+      <p class="hero-desc" data-i18n="hero_desc">
+        Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. Gerçek zamanlı bilgisayarlı görü (Edge AI), kapalı devre RAG sistemleri, Kotlin/KMP mobil uygulamaları, Linux altyapı sıkılaştırma ve gömülü telemetri projeleri geliştiriyorum.
+      </p>
+      <div class="btn-row">
+        <a href="#projects" class="btn btn-primary" data-i18n="btn_projects">Projeleri İncele</a>
+        <a href="https://github.com/alierenkocaman" target="_blank" rel="noopener" class="btn">GitHub</a>
+        <a href="https://www.linkedin.com/in/alierenkocaman/" target="_blank" rel="noopener" class="btn">LinkedIn</a>
+        <a href="mailto:alierenkocaman0@gmail.com" class="btn" data-i18n="btn_mail">E-posta Gönder</a>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-head">
+        <h2 data-i18n="proj_title">Öne Çıkan Projeler</h2>
+        <span class="section-sub" data-i18n="proj_sub">Her proje adım adım GitHub ve canlı demo olarak eklenmektedir.</span>
+      </div>
+
+      <div class="grid">
+        <!-- 1. AUPI -->
+        <article class="card">
+          <div>
+            <div class="card-top">
+              <span class="tag-cat">Computer Vision & Edge AI</span>
+              <span class="tag-status" data-i18n="status_active">Aktif Geliştirme</span>
+            </div>
+            <h3>AUPI — Edge UAV Perception SDK</h3>
+            <p data-i18n="p1_desc">
+              NVIDIA Jetson Orin NX gibi uç cihazlar için tasarlanmış gerçek zamanlı hava hedefi tespiti ve PTZ kamera takip yazılımı. YOLOv10, özel Tensor Batching, ivme destekli Kalman filtresi ve Ego-Motion Compensation (CMC) içerir.
+            </p>
+            <div class="tech-list">
+              <span class="tech">YOLOv10</span>
+              <span class="tech">PyTorch</span>
+              <span class="tech">Kalman + CMC</span>
+              <span class="tech">Jetson Orin NX</span>
+            </div>
+          </div>
+          <a href="https://github.com/alierenkocaman" target="_blank" rel="noopener" class="card-link" data-i18n="link_showcase">GitHub Profili →</a>
+        </article>
+
+        <!-- 2. Taktik-RAG -->
+        <article class="card">
+          <div>
+            <div class="card-top">
+              <span class="tag-cat">LLM & On-Prem AI</span>
+              <span class="tag-status" data-i18n="status_active">Aktif Geliştirme</span>
+            </div>
+            <h3>Taktik-RAG</h3>
+            <p data-i18n="p2_desc">
+              İnternetten izole (air-gapped) ortamlarda çalışan, PDF formatından bağımsız teknik doküman soru-cevap yapay zekâ sistemi ve mobil istemci arayüzü.
+            </p>
+            <div class="tech-list">
+              <span class="tech">Python</span>
+              <span class="tech">Air-Gapped RAG</span>
+              <span class="tech">Vector Search</span>
+              <span class="tech">Mobile UI</span>
+            </div>
+          </div>
+          <a href="https://github.com/alierenkocaman" target="_blank" rel="noopener" class="card-link" data-i18n="link_showcase">GitHub Profili →</a>
+        </article>
+
+        <!-- 3. LifeSync -->
+        <article class="card">
+          <div>
+            <div class="card-top">
+              <span class="tag-cat">Mobile & Cross-Platform</span>
+              <span class="tag-status" data-i18n="status_testing">Test Aşamasında</span>
+            </div>
+            <h3>LifeSync</h3>
+            <p data-i18n="p3_desc">
+              MVI mimarisiyle geliştirilen kişisel asistan, biyometrik sağlık takibi ve araç içi navigasyon uygulaması. Android, Wear OS ve iOS hedefli çapraz platform yapı.
+            </p>
+            <div class="tech-list">
+              <span class="tech">Kotlin</span>
+              <span class="tech">Jetpack Compose</span>
+              <span class="tech">KMP</span>
+              <span class="tech">MVI / Firebase</span>
+            </div>
+          </div>
+          <a href="https://github.com/alierenkocaman" target="_blank" rel="noopener" class="card-link" data-i18n="link_showcase">GitHub Profili →</a>
+        </article>
+
+        <!-- 4. Imposter -->
+        <article class="card">
+          <div>
+            <div class="card-top">
+              <span class="tag-cat">Android & App Security</span>
+              <span class="tag-status" data-i18n="status_release">Yayın Hazırlığı</span>
+            </div>
+            <h3>Imposter</h3>
+            <p data-i18n="p4_desc">
+              Tersine mühendisliğe karşı C++ NDK güvenlik katmanı ve kod karartma (obfuscation) teknikleriyle güçlendirilmiş çift dilli sosyal kelime tahmin oyunu.
+            </p>
+            <div class="tech-list">
+              <span class="tech">Kotlin</span>
+              <span class="tech">C++ NDK</span>
+              <span class="tech">Obfuscation</span>
+              <span class="tech">Google Play</span>
+            </div>
+          </div>
+          <a href="https://github.com/alierenkocaman" target="_blank" rel="noopener" class="card-link" data-i18n="link_showcase">GitHub Profili →</a>
+        </article>
+
+        <!-- 5. 4S2P Battery -->
+        <article class="card">
+          <div>
+            <div class="card-top">
+              <span class="tag-cat">Embedded & Hardware</span>
+              <span class="tag-status" data-i18n="status_proto">Prototip</span>
+            </div>
+            <h3 data-i18n="p5_title">4S2P LiFePO4 Batarya & Telemetri</h3>
+            <p data-i18n="p5_desc">
+              Smart BMS, ESP32 mikrodenetleyici ve 100W Power Delivery modülleriyle tasarlanan ölçekli elektrikli araç batarya paketi ve gerçek zamanlı mobil telemetri arayüzü.
+            </p>
+            <div class="tech-list">
+              <span class="tech">ESP32</span>
+              <span class="tech">Smart BMS</span>
+              <span class="tech">LiFePO4</span>
+              <span class="tech">Telemetry</span>
+            </div>
+          </div>
+          <a href="https://github.com/alierenkocaman" target="_blank" rel="noopener" class="card-link" data-i18n="link_showcase">GitHub Profili →</a>
+        </article>
+
+        <!-- 6. Infra & Web -->
+        <article class="card">
+          <div>
+            <div class="card-top">
+              <span class="tag-cat">Linux, Security & Web</span>
+              <span class="tag-status" data-i18n="status_done">Tamamlandı</span>
+            </div>
+            <h3 data-i18n="p6_title">Linux Altyapı & 3D Web Projeleri</h3>
+            <p data-i18n="p6_desc">
+              Nginx, SSL/Certbot, Fail2Ban ve bot filtreleme ile sıkılaştırılmış Arch Linux ayna altyapısı; ayrıca işletmeler için GSAP tabanlı 3D etkileşimli web arayüzleri.
+            </p>
+            <div class="tech-list">
+              <span class="tech">Nginx</span>
+              <span class="tech">Fail2Ban / SSL</span>
+              <span class="tech">GSAP 3D</span>
+              <span class="tech">Linux</span>
+            </div>
+          </div>
+          <a href="https://github.com/alierenkocaman" target="_blank" rel="noopener" class="card-link" data-i18n="link_showcase">GitHub Profili →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-head">
+        <h2 data-i18n="skills_title">Teknik Yetkinlikler</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h3 data-i18n="sk1_title">Yapay Zekâ & Görüntü İşleme</h3>
+          <ul>
+            <li>Python, PyTorch, OpenCV</li>
+            <li>YOLOv10, Object Detection & Tracking</li>
+            <li>On-Prem RAG, Embeddings, LLM APIs</li>
+            <li>Edge Inference & Dataset Engineering</li>
+          </ul>
+        </div>
+        <div class="skill-box">
+          <h3 data-i18n="sk2_title">Mobil & Web Geliştirme</h3>
+          <ul>
+            <li>Kotlin, Jetpack Compose, KMP</li>
+            <li>MVI Architecture, Firebase</li>
+            <li>C++ NDK & App Hardening</li>
+            <li>HTML, CSS, JavaScript, GSAP</li>
+          </ul>
+        </div>
+        <div class="skill-box">
+          <h3 data-i18n="sk3_title">Siber Güvenlik & Sistem</h3>
+          <ul>
+            <li>Linux (Ubuntu, Kali, Arch)</li>
+            <li>Nginx, SSL/Certbot, UFW, Fail2Ban</li>
+            <li>Nmap, Burp Suite, Wireshark, CTF</li>
+            <li>Network & Web Security Assessment</li>
+          </ul>
+        </div>
+        <div class="skill-box">
+          <h3 data-i18n="sk4_title">Gömülü & Donanım</h3>
+          <ul>
+            <li>ESP32, Serial / Wireless Telemetry</li>
+            <li>LiFePO4 Battery & Smart BMS Systems</li>
+            <li>RF Signal Acquisition Prototypes</li>
+            <li>Hardware Benchmarking & Optimization</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-box">
+        <h2 data-i18n="contact_title">Birlikte Çalışalım</h2>
+        <p data-i18n="contact_desc">
+          Uzaktan yarı zamanlı mühendislik rolleri, yapay zekâ/mobil PoC geliştirmeleri veya teknik iş birlikleri için doğrudan ulaşabilirsiniz.
+        </p>
+        <div class="btn-row">
+          <a href="mailto:alierenkocaman0@gmail.com" class="btn btn-primary">alierenkocaman0@gmail.com</a>
+          <a href="https://www.linkedin.com/in/alierenkocaman/" target="_blank" rel="noopener" class="btn">LinkedIn</a>
+          <a href="https://github.com/alierenkocaman" target="_blank" rel="noopener" class="btn">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Ali Eren Kocaman · <span data-i18n="footer_note">GitHub Pages üzerinde yayında</span>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      tr: {
+        nav_projects: "Projeler",
+        nav_skills: "Yetkinlikler",
+        nav_contact: "İletişim",
+        hero_badge: "Uzaktan / Yarı Zamanlı ve Proje Bazlı İşlere Açık",
+        hero_role: "Yapay Zekâ, Mobil & Siber Güvenlik Mühendisliği",
+        hero_desc: "Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. Gerçek zamanlı bilgisayarlı görü (Edge AI), kapalı devre RAG sistemleri, Kotlin/KMP mobil uygulamaları, Linux altyapı sıkılaştırma ve gömülü telemetri projeleri geliştiriyorum.",
+        btn_projects: "Projeleri İncele",
+        btn_mail: "E-posta Gönder",
+        proj_title: "Öne Çıkan Projeler",
+        proj_sub: "Her proje adım adım GitHub ve canlı demo olarak eklenmektedir.",
+        status_active: "Aktif Geliştirme",
+        status_testing: "Test Aşamasında",
+        status_release: "Yayın Hazırlığı",
+        status_proto: "Prototip",
+        status_done: "Tamamlandı",
+        p1_desc: "NVIDIA Jetson Orin NX gibi uç cihazlar için tasarlanmış gerçek zamanlı hava hedefi tespiti ve PTZ kamera takip yazılımı. YOLOv10, özel Tensor Batching, ivme destekli Kalman filtresi ve Ego-Motion Compensation (CMC) içerir.",
+        p2_desc: "İnternetten izole (air-gapped) ortamlarda çalışan, PDF formatından bağımsız teknik doküman soru-cevap yapay zekâ sistemi ve mobil istemci arayüzü.",
+        p3_desc: "MVI mimarisiyle geliştirilen kişisel asistan, biyometrik sağlık takibi ve araç içi navigasyon uygulaması. Android, Wear OS ve iOS hedefli çapraz platform yapı.",
+        p4_desc: "Tersine mühendisliğe karşı C++ NDK güvenlik katmanı ve kod karartma (obfuscation) teknikleriyle güçlendirilmiş çift dilli sosyal kelime tahmin oyunu.",
+        p5_title: "4S2P LiFePO4 Batarya & Telemetri",
+        p5_desc: "Smart BMS, ESP32 mikrodenetleyici ve 100W Power Delivery modülleriyle tasarlanan ölçekli elektrikli araç batarya paketi ve gerçek zamanlı mobil telemetri arayüzü.",
+        p6_title: "Linux Altyapı & 3D Web Projeleri",
+        p6_desc: "Nginx, SSL/Certbot, Fail2Ban ve bot filtreleme ile sıkılaştırılmış Arch Linux ayna altyapısı; ayrıca işletmeler için GSAP tabanlı 3D etkileşimli web arayüzleri.",
+        link_showcase: "GitHub Profili →",
+        skills_title: "Teknik Yetkinlikler",
+        sk1_title: "Yapay Zekâ & Görüntü İşleme",
+        sk2_title: "Mobil & Web Geliştirme",
+        sk3_title: "Siber Güvenlik & Sistem",
+        sk4_title: "Gömülü & Donanım",
+        contact_title: "Birlikte Çalışalım",
+        contact_desc: "Uzaktan yarı zamanlı mühendislik rolleri, yapay zekâ/mobil PoC geliştirmeleri veya teknik iş birlikleri için doğrudan ulaşabilirsiniz.",
+        footer_note: "GitHub Pages üzerinde yayında"
+      },
+      en: {
+        nav_projects: "Projects",
+        nav_skills: "Skills",
+        nav_contact: "Contact",
+        hero_badge: "Open to Remote / Part-Time & Project-Based Work",
+        hero_role: "AI, Mobile & Cybersecurity Engineering",
+        hero_desc: "Senior Computer Engineering student building real-time Edge AI computer vision pipelines, air-gapped RAG systems, Kotlin/KMP mobile apps, hardened Linux infrastructure, and embedded telemetry hardware.",
+        btn_projects: "View Projects",
+        btn_mail: "Send Email",
+        proj_title: "Featured Projects",
+        proj_sub: "Repositories, technical write-ups, and live demos are being published sequentially.",
+        status_active: "Active Dev",
+        status_testing: "In Testing",
+        status_release: "Release Prep",
+        status_proto: "Prototype",
+        status_done: "Completed",
+        p1_desc: "Real-time aerial target detection and PTZ camera tracking SDK built for edge hardware like NVIDIA Jetson Orin NX. Combines YOLOv10, custom Tensor Batching, acceleration-assisted Kalman filtering, and Ego-Motion Compensation (CMC).",
+        p2_desc: "Air-gapped, PDF-agnostic technical document question-answering AI system with a dedicated mobile client interface for offline operational environments.",
+        p3_desc: "Cross-platform personal assistant, biometric health tracker, and automotive navigation app built with MVI architecture targeting Android, Wear OS, and iOS.",
+        p4_desc: "Bilingual social word-guessing Android game hardened against reverse engineering using a C++ NDK security layer and code obfuscation.",
+        p5_title: "4S2P LiFePO4 Battery & Telemetry",
+        p5_desc: "Scaled EV battery prototype engineered with LiFePO4 cells, Smart BMS, ESP32 microcontroller, 100W Power Delivery modules, and live mobile telemetry.",
+        p6_title: "Linux Infrastructure & 3D Web",
+        p6_desc: "Self-hosted Arch Linux mirror hardened with Nginx, SSL/Certbot, Fail2Ban, and bot filtering, alongside interactive 3D GSAP landing pages for businesses.",
+        link_showcase: "GitHub Profile →",
+        skills_title: "Technical Skills",
+        sk1_title: "AI & Computer Vision",
+        sk2_title: "Mobile & Web Development",
+        sk3_title: "Cybersecurity & Linux",
+        sk4_title: "Embedded & Hardware",
+        contact_title: "Let's Work Together",
+        contact_desc: "Feel free to reach out for remote part-time engineering roles, AI/mobile PoC development, or technical collaborations.",
+        footer_note: "Hosted on GitHub Pages"
+      }
+    };
+
+    let currentLang = "tr";
+    const toggleBtn = document.getElementById("langToggle");
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      toggleBtn.textContent = lang === "tr" ? "EN" : "TR";
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      applyLanguage(currentLang === "tr" ? "en" : "tr");
+    });
+  </script>
+</body>
+</html>
